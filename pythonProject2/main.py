@@ -28,7 +28,10 @@ def home():
         curs_insert.execute(
             'INSERT INTO User_Info(username, password) VALUES ({}, {})'.format("'{}'".format(form.username.data),
                                                                                "'{}'".format(form.password.data)))
-
+        print(form.username.data)
+        print(form.password.data)
+        print('INSERT INTO User_Info(username, password) VALUES ({}, {})'.format("'{}'".format(form.username.data),
+                                                                               "'{}'".format(form.password.data)))
         return redirect(url_for('home'))
     curs_select = con.cursor()
 
