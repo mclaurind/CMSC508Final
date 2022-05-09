@@ -56,12 +56,34 @@ def profile():
 
     select_results = con_select.fetchone()
     message_str = ""
-    for item in select_results:
-        message_str += str(item) + " "
 
-    print(message_str)
-    message = message_str
-    return render_template('health_profile.html', form = form, message = message, username = username)
+    if select_results == None:
+        form_header = "Create your health profile!"
+        message = "Your health profile will be displayed here"
+    else:
+        form_header = "Update your health profile!"
+        for item in select_results:
+            message_str += str(item) + " "
+            message = message_str
+
+    if form.validate_on_submit():
+        con_insert = con.cursor()
+        if form_header == "Create your health profile!":
+            sql_str = f"INSERT INTO Health_Profile (username,height,weight,age,bmi,ethnicity) VALUES ('{username}', {form.height.data}, {form.weight.data}, {form.age.data}, {form.bmi.data}, '{form.ethnicity.data}')"
+            print(sql_str)
+            con_insert.execute(sql_str)
+        else:
+            sql_str = f"UPDATE Health_Profile SET height = {form.height.data},weight = {form.weight.data},age = {form.age.data},bmi = {form.bmi.data},ethnicity = '{form.ethnicity.data}' WHERE username = '{username}'"
+            con_insert.execute(sql_str)
+
+
+
+        return redirect(url_for("profile"))
+
+
+
+
+    return render_template('health_profile.html', form = form, message = message, username = username, form_header = form_header)
 
 
 @app.route("/signup", methods = ["POST", "GET"])

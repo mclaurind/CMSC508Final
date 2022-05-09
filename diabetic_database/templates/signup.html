@@ -7,7 +7,6 @@
 </div>
 <body>
 <div>
-  {% if form_check == False %}
     <form method = "POST", action = "">
       {{ form.hidden_tag() }}
       <legend>SIGNUP</legend>
@@ -15,10 +14,6 @@
       {{ form.password }}
       {{ form.submit }}
     </form>
-  {% endif %}
-  {% if form_check == True %}
-    {{ message }}
-  {% endif % }
 </div>
 <div>
     {% with messages = get_flashed_messages(with_categories=true) %}

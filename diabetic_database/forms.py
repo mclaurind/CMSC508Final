@@ -21,6 +21,6 @@ class health_profile_form(FlaskForm):
     age = StringField("Age:", validators=[DataRequired()])
     bmi = StringField("BMI:", validators =[DataRequired()])
     ethnicity = StringField("Ethnicity:", validators=[DataRequired()])
-    submit = SubmitField("Create Health Profile!")
+    submit = SubmitField("Submit")
 
 
