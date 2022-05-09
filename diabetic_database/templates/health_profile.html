@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="topnav">
+  <a href="/">Home</a>
+  <a class = "active" href="#profile">Profile</a>
+    <a href = "/signup">Signup</a>
+</div>
+<body>
+<H1>WELCOME, {{ username }}</H1>
+<div>
+      <form method = "POST", action = "">
+        {{ form.hidden_tag() }}
+        <div>
+        {{ form.height.label }}
+          {{ form.height }}
+        </div>
+    <div>
+        {{ form.weight.label }}
+          {{ form.weight }}
+        </div>
+        <div>
+        {{ form.age.label }}
+          {{ form.age }}
+        </div>
+    <div>
+        {{ form.bmi.label }}
+          {{ form.bmi }}
+        </div>
+       <div>
+        {{ form.ethnicity.label }}
+          {{ form.ethnicity }}
+        </div>
+        <div>
+        {{ form.submit.label }}
+          {{ form.submit }}
+        </div>
+      </form>
+</div>
+<div>{{message}}</div>
+
+</body>
+</html>

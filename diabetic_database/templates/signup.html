@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="topnav">
+  <a href="/">Home</a>
+ <a href="profile">Profile</a>
+    <a class = "active" href = #signup>Sign Up</a>
+</div>
+<body>
+<div>
+  {% if form_check == False %}
+    <form method = "POST", action = "">
+      {{ form.hidden_tag() }}
+      <legend>SIGNUP</legend>
+      {{ form.username }}
+      {{ form.password }}
+      {{ form.submit }}
+    </form>
+  {% endif %}
+  {% if form_check == True %}
+    {{ message }}
+  {% endif % }
+</div>
+<div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+</head>
+</body>
+
+</html>
