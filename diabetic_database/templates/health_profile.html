@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a href="/">Home</a>
-  <a class = "active" href="#profile">Profile</a>
-    <a href = "/signup">Signup</a>
-    <a href = "/events">Events</a>
-</div>
-<body>
+{% extends "layout.html" %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
 <H1>WELCOME, {{ username }}</H1>
 <h2>{{form_header}}</h2>
 <div>
@@ -57,8 +51,4 @@
         </table>
     {% endif %}
     </div>
-
-
-
-</body>
-</html>
+{% endblock content %}

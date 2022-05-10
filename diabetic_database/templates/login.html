@@ -1,33 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a href="/">Home</a>
-  <a class = "active" href="#login">Login</a>
-  <a href = "profile">Profile</a>
-</div>
-<head>
-    <title> WELCOME BACK</title>
-    <H2>Please Login Here!</H2>
-</head>
-<div>
-    <form method = "POST", action = "">
-      {{ form.hidden_tag() }}
-      <legend>LOGIN</legend>
-      {{ form.username }}
-      {{ form.password }}
-      {{ form.submit }}
-    </form>
-</div>
-<div>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
-</head>
-</html>
+{% extends "layout.html" %}
+{% block title %}WELCOME BACK{% endblock title %}
+
+{% block content %}
+    <h1>Please Login Here!</h1>
+    <div>
+        <form method = "POST", action = "">
+          {{ form.hidden_tag() }}
+          <legend>LOGIN</legend>
+          {{ form.username }}
+          {{ form.password }}
+          {{ form.submit }}
+        </form>
+    </div>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+{% block content %}

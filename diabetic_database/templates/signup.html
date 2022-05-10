@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a href="/">Home</a>
- <a href="profile">Profile</a>
-    <a class = "active" href = #signup>Sign Up</a>
-  <a href = "/events">Events</a>
-</div>
-<body>
+{% extends "layout.html" %}
+{% block title %}Signup{% endblock title %}
+{% block content %}
 <div>
     <form method = "POST", action = "">
       {{ form.hidden_tag() }}
@@ -27,7 +21,4 @@
         {% endif %}
     {% endwith %}
 </div>
-</head>
-</body>
-
-</html>
+{% endblock content %}

@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a class="active" href="#/">Home</a>
-  <a href ="profile">Profile</a>
-    <a href = "/signup">Signup</a>
-      <a href = "/events">Events</a>
-</div>
-<head>
-    <title> WELCOME </title>
-    <H2>Please login, or sign up to create an account!</H2>
-    <form method = "POST"></form>
-
-</head>
+{% extends "layout.html" %}
+{% block title %}WELCOME{% endblock title %}
+{% block content %}
+ <h1>Please login, or sign up to create an account!</h1>
+ <form method = "POST"></form>
 <div>
     <form method = "POST", action = "">
       {{ form.hidden_tag() }}
@@ -32,5 +23,4 @@
         {% endif %}
     {% endwith %}
 </div>
-</head>
-</html>
+{% endblock content %}

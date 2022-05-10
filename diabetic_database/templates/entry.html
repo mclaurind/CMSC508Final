@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a href="/">Home</a>
-  <a href="/profile">Profile</a>
-    <a href = "/signup">Signup</a>
-   <a class = "active" href="#events">Events</a>
-</div>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 <div>
   <form action = "", method = "POST">
     {{form.hidden_tag()}}
@@ -30,7 +23,5 @@
          </tr>
         {% endfor %}
     </table>
-</body>
 </div>
-</body>
-</html>
+{% endblock content %}

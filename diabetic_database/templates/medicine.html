@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a href="/">Home</a>
-  <a href="/profile">Profile</a>
-    <a href = "/signup">Signup</a>
-   <a href="/events">Events</a>
-</div>
-<head>
-    <meta charset="UTF-8">
-    <title>Medicine Events</title>
-    <h1>Medicine Events</h1>
-</head>
-</body>
+{% extends "layout.html" %}
+{% block title %}Medicine Event{% endblock title %}
+
+{% block content %}
 <div>
+     <h1>Medicine Events</h1>
 <form action = "", method = "POST">
     {{form.hidden_tag()}}
     {{form.name.label}}
@@ -39,6 +30,5 @@
          </tr>
         {% endfor %}
     </table>
-</body>
 </div>
-</html>
+{% endblock content %}

@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<div class="topnav">
-  <a href="/">Home</a>
-  <a href="/profile">Profile</a>
-    <a href = "/signup">Signup</a>
-   <a href="/events">Events</a>
-</div>
-<head>
-    <meta charset="UTF-8">
-    <title>Food Events</title>
-    <h1>Food Events</h1>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block title %}Food Event{% endblock title %}
+
+{% block content %}
 <div>
-<form action = "", method = "POST">
-    {{form.hidden_tag()}}
-    {{form.name.label}}
-    {{form.name}}
-    {{form.carbs.label}}
-    {{form.carbs}}
-    {{form.submit}}
+    <h1>Food Events</h1>
+    <form action = "", method = "POST">
+        {{form.hidden_tag()}}
+        {{form.name.label}}
+        {{form.name}}
+        {{form.carbs.label}}
+        {{form.carbs}}
+        {{form.submit}}
 </form>
 
 </div>
@@ -40,7 +31,4 @@
     </table>
 
 </div>
-
-
-</body>
-</html>
+{% endblock content %}
