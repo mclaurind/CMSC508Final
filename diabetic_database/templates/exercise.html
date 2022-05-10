@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="topnav">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+    <a href = "/signup">Signup</a>
+   <a href="/events">Events</a>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise Events</title>
+    <h1>Exercise Events</h1>
+</head>
+</body>
+<div>
+<form action = "", method = "POST">
+    {{form.hidden_tag()}}
+    {{form.type.label}}
+    {{form.type}}
+    {{form.calories_burned.label}}
+    {{form.calories_burned}}
+    {{form.duration.label}}
+    {{form.duration}}
+    {{form.submit}}
+</form>
+</div>
+<div>
+    <table>
+        <tr>
+            {% for header in headers %}
+                <th>{{header}}</th>
+            {% endfor %}
+        </tr>
+        {% for row in message %}
+         <tr>
+            {% for item in row %}
+             <td>{{item}}</td>
+            {% endfor %}
+         </tr>
+        {% endfor %}
+    </table>
+    </div>
+</body>
+</html>

@@ -4,6 +4,7 @@
   <a href="/">Home</a>
   <a class = "active" href="#profile">Profile</a>
     <a href = "/signup">Signup</a>
+    <a href = "/events">Events</a>
 </div>
 <body>
 <H1>WELCOME, {{ username }}</H1>
@@ -36,7 +37,28 @@
         </div>
       </form>
 </div>
-<div><h1>{{message}}</h1></div>
+<div>
+    {% if check %}
+            <h2>{{out_message}}</h2>
+    {% else %}
+        <table>
+            <tr>
+                {% for header in headers %}
+                    <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+
+            <tr>
+                {% for item in select_results %}
+                     <td>{{item}}</td>
+                {% endfor %}
+            </tr>
+
+        </table>
+    {% endif %}
+    </div>
+
+
 
 </body>
 </html>

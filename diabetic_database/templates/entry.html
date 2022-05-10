@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="topnav">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+    <a href = "/signup">Signup</a>
+   <a class = "active" href="#events">Events</a>
+</div>
+<body>
+<div>
+  <form action = "", method = "POST">
+    {{form.hidden_tag()}}
+    {{form.myField.label}}
+    {{form.myField}}
+    {{form.submit}}
+  </form>
+</div>
+<div>
+    <table>
+        <tr>
+            {% for header in headers %}
+                <th>{{header}}</th>
+            {% endfor %}
+        </tr>
+        {% for row in message %}
+         <tr>
+            {% for item in row %}
+             <td>{{item}}</td>
+            {% endfor %}
+         </tr>
+        {% endfor %}
+    </table>
+</body>
+</div>
+</body>
+</html>
