@@ -3,35 +3,40 @@
 {% block content %}
 <H1>WELCOME, {{ username }}</H1>
 <h2>{{form_header}}</h2>
-<div>
-      <form method = "POST", action = "">
-        {{ form.hidden_tag() }}
+    <div class="content-section">
+    <form method = "POST" action = "">
+      {{ form.hidden_tag() }}
         <div>
-        {{ form.height.label }}
-          {{ form.height }}
-        </div>
-    <div>
-        {{ form.weight.label }}
-          {{ form.weight }}
-        </div>
-        <div>
-        {{ form.age.label }}
-          {{ form.age }}
-        </div>
-    <div>
-        {{ form.bmi.label }}
-          {{ form.bmi }}
-        </div>
-       <div>
-        {{ form.ethnicity.label }}
-          {{ form.ethnicity }}
-        </div>
-        <div>
-          {{ form.submit }}
-        </div>
-      </form>
+        <form method = "POST", action = "">
+          {{ form.hidden_tag() }}
+          <div>
+          {{ form.height.label }}
+            {{ form.height }}
+          </div>
+      <div>
+          {{ form.weight.label }}
+            {{ form.weight }}
+          </div>
+          <div>
+          {{ form.age.label }}
+            {{ form.age }}
+          </div>
+      <div>
+          {{ form.bmi.label }}
+            {{ form.bmi }}
+          </div>
+         <div>
+          {{ form.ethnicity.label }}
+            {{ form.ethnicity }}
+          </div>
+          <div>
+            {{ form.submit }}
+          </div>
+        </form>
+  </div>
+    </form>
 </div>
-<div>
+    <div>
     {% if check %}
             <h2>{{out_message}}</h2>
     {% else %}
