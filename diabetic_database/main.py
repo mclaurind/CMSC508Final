@@ -34,8 +34,6 @@ def index():
                 password = form.password.data
                 flash(f'Logged into {username}!', 'success')
                 return redirect(url_for('profile'))
-            else:
-                flash("Please try again! Invalid Login Credentials")
     except IndexError:
         flash("Please enter a valid username, or sign up!")
     return render_template('index.html', form = form)
@@ -99,7 +97,7 @@ def signup():
             )
             con_insert = con.cursor()
             con_insert.execute("INSERT INTO User_Info(username, password) VALUES ({}, {})".format("'{}'".format(form.username.data),"'{}'".format(form.password.data)))
-            flash(f"Successfully added user {form.username.data}", "success")
+            flash(f" Account created for {form.username.data}", "success")
             return redirect(url_for("index"))
     except pymysql.err.IntegrityError:
         flash("This user already exists, please choose a new username", "danger")
