@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
-{% block title %}WELCOME BACK{% endblock title %}
+{% block title %}Login{% endblock title %}
 {% block content %}
     <div>
         <form method = "POST", action = "">
           {{ form.hidden_tag() }}
           <legend>LOGIN</legend>
-          {{ form.username }}
-          {{ form.password }}
-          {{ form.submit }}
+          {{ form.username(class="form-control") }}
+          {{ form.password(class="form-control") }}
+          {{ form.submit(class="btn btn-primary") }}
         </form>
     </div>
     <div>

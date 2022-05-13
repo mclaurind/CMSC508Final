@@ -5,29 +5,14 @@
 <div>
 <form action = "", method = "POST">
     {{form.hidden_tag()}}
-    {{form.type.label}}
-    {{form.type}}
-    {{form.calories_burned.label}}
-    {{form.calories_burned}}
-    {{form.duration.label}}
-    {{form.duration}}
-    {{form.submit}}
+    {{form.type.label(class="form-label")}}
+    {{form.type(class="form-control")}}
+    {{form.calories_burned.label(class="form-label")}}
+    {{form.calories_burned(class="form-control")}}
+    {{form.duration.label(class="form-label")}}
+    {{form.duration(class="form-control")}}
+    <br/>
+    {{form.submit(class="btn btn-primary")}}
 </form>
 </div>
-<div>
-    <table>
-        <tr>
-            {% for header in headers %}
-                <th>{{header}}</th>
-            {% endfor %}
-        </tr>
-        {% for row in message %}
-         <tr>
-            {% for item in row %}
-             <td>{{item}}</td>
-            {% endfor %}
-         </tr>
-        {% endfor %}
-    </table>
-    </div>
 {% endblock content %}

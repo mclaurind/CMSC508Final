@@ -6,29 +6,15 @@
     <h1>Food Events</h1>
     <form action = "", method = "POST">
         {{form.hidden_tag()}}
-        {{form.name.label}}
-        {{form.name}}
-        {{form.carbs.label}}
-        {{form.carbs}}
-        {{form.submit}}
+        <br/>
+        {{form.name.label(class="form-label")}}
+        {{form.name(class="form-control")}}
+        <br/>
+        {{form.carbs.label(class="form-label")}}
+        {{form.carbs(class="form-control")}}
+        <br/>
+        {{form.submit(class="btn btn-primary") }}
 </form>
-
-</div>
-<div>
-    <table>
-        <tr>
-            {% for header in headers %}
-                <th>{{header}}</th>
-            {% endfor %}
-        </tr>
-        {% for row in message %}
-         <tr>
-            {% for item in row %}
-             <td>{{item}}</td>
-            {% endfor %}
-         </tr>
-        {% endfor %}
-    </table>
 
 </div>
 {% endblock content %}

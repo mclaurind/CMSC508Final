@@ -1,18 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
-<div>
-  <form action = "", method = "POST">
-    {{form.hidden_tag()}}
-    {{form.myField.label}}
-    {{form.myField}}
-    {{form.submit}}
-  </form>
-</div>
-<div>
-    <table>
+<h1 class="display-2">Event Log</h1>
+    <div>
+      <form action = "", method = "POST">
+        {{form.hidden_tag()}}
+          <br/>
+         {{form.myField.label(class="form-label")}}
+           <br/>
+        {{form.myField(class="form-select form-select-lg-mb-3")}}
+          <br/>
+        {{form.submit(class="btn btn-primary")}}
+          <br/><br/><br/>
+      </form>
+    </div>
+    <div>
+
+    <br/>
+    <table class="table table-hover">
         <tr>
             {% for header in headers %}
-                <th>{{header}}</th>
+                <th scope="col">{{header}}</th>
             {% endfor %}
         </tr>
         {% for row in message %}

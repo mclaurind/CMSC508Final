@@ -1,5 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, redirect, url_for, flash, session, request
+from flask_login import UserMixin, login_user, LoginManager, login_required,logout_user, current_user
 from forms import *
 import pymysql
 username = "Placeholder"
@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = "oiwehfiojfiojdsofijsidof"
+WTF_CSRF_ENABLED = True
 
 @app.route("/", methods = ["POST", "GET"])
 def index():
@@ -31,16 +32,20 @@ def index():
             sql_pass = curs_pass.fetchall()
             if sql_pass[0][0] == form.password.data:
                 username = form.username.data
+                session['username'] = request.form['username']
                 password = form.password.data
-                flash(f'Logged into {username}!', 'success')
+                session['password'] = request.form['password']
+                flash(f"Logged into {username}!", "success")
                 return redirect(url_for('profile'))
+            else:
+                flash("Incorrect password. Try again!", "danger")
+
     except IndexError:
-        flash("Please enter a valid username, or sign up!")
+        flash("Please enter a valid username, or sign up!", "danger")
     return render_template('index.html', form = form)
 
 @app.route("/profile", methods = ["POST", "GET"])
 def profile():
-
     con = pymysql.connect(
         host='cmsc508.com',
         user='lodimk2',
@@ -52,12 +57,13 @@ def profile():
     con_select = con.cursor()
     con_select.execute("SELECT * FROM Health_Profile WHERE username = {}".format("'{}'").format(username))
     headers = ["Username", "Height", "Weight", "Age", "BMI", "Ethnicity"]
+
     select_results = con_select.fetchone()
     out_message = ""
     if select_results == None:
         check = True
         form_header = "Create your health profile!"
-        out_message = "Your health profile will be displayed here"
+        out_message = ""
     else:
         print(select_results)
         check = False
@@ -73,13 +79,7 @@ def profile():
             sql_str = f"UPDATE Health_Profile SET height = {form.height.data},weight = {form.weight.data},age = {form.age.data},bmi = {form.bmi.data},ethnicity = '{form.ethnicity.data}' WHERE username = '{username}'"
             con_insert.execute(sql_str)
 
-
-
             return redirect(url_for("profile"))
-
-
-
-
     return render_template('health_profile.html', form = form, out_message = out_message, username = username, form_header = form_header, select_results = select_results, headers = headers, check = check)
 
 
@@ -97,16 +97,17 @@ def signup():
             )
             con_insert = con.cursor()
             con_insert.execute("INSERT INTO User_Info(username, password) VALUES ({}, {})".format("'{}'".format(form.username.data),"'{}'".format(form.password.data)))
-            flash(f" Account created for {form.username.data}", "success")
+            flash(" Account sucessfuly created!", "success")
             return redirect(url_for("index"))
     except pymysql.err.IntegrityError:
         flash("This user already exists, please choose a new username", "danger")
-
     return render_template("signup.html", form = form)
+
+
 @app.route("/events", methods = ["POST", "GET"])
 def entry_page():
-    entry_options = ["Exercise", "Food", "Medicine", "Blood_Sugar"]
-    headers = ["Username", "Event_Type","Time"]
+    entry_options = ["Exercise", "Food", "Medicine", "Blood Sugar"]
+    headers = ["Username", "Event Type","Time"]
 
     option = ""
     form = starter_entry_form()
@@ -131,8 +132,9 @@ def entry_page():
         option = form.myField.data
         redirect_str =f"{option}"
         return redirect(url_for(redirect_str.lower()))
-
     return render_template('entry.html', options = entry_options, form = form, headers = headers, message = message)
+
+
 @app.route("/food", methods = ["POST", "GET"])
 def food():
     con_one = pymysql.connect(
@@ -168,9 +170,6 @@ def food():
         con_get.execute(get_sql)
         food_names_big = con_get.fetchall()
         food_names = []
-
-
-
 
         for item in range(len(food_names_big[0])):
             print(food_names_big[item][0])
@@ -346,9 +345,9 @@ def exercise():
     return render_template("exercise.html", form=form, message=message, headers=headers)
 
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
-    global username
-    global password
-    username = "PLACEHOLDER"
-    password = "PLACEHOLDER"
+   # remove the username from the session if it is there
+   session.pop('username', None)
+   session.pop('password', None)
+   return redirect(url_for('index'))

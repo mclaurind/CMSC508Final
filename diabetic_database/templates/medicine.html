@@ -6,29 +6,17 @@
      <h1>Medicine Events</h1>
 <form action = "", method = "POST">
     {{form.hidden_tag()}}
-    {{form.name.label}}
-    {{form.name}}
-    {{form.type.label}}
-    {{form.type}}
-    {{form.dosage.label}}
-    {{form.dosage}}
-    {{form.submit}}
+    {{form.name.label(class="form-label")}}
+    {{form.name(class="form-control")}}
+    <br/>
+    {{form.type.label(class="form-label")}}
+    {{form.type(class="form-control")}}
+    <br/>
+    {{form.dosage.label(class="form-label")}}
+    {{form.dosage(class="form-control")}}
+    <br/>
+    {{form.submit(class="btn btn-primary")}}
+    <br/>
 </form>
-</div>
-<div>
-    <table>
-        <tr>
-            {% for header in headers %}
-                <th>{{header}}</th>
-            {% endfor %}
-        </tr>
-        {% for row in message %}
-         <tr>
-            {% for item in row %}
-             <td>{{item}}</td>
-            {% endfor %}
-         </tr>
-        {% endfor %}
-    </table>
 </div>
 {% endblock content %}

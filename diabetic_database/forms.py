@@ -6,8 +6,7 @@ from wtforms.validators import DataRequired
 class registration_form(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
     password = PasswordField("Password", validators = [DataRequired()])
-    submit = SubmitField('Sign Up!')
-
+    submit = SubmitField('Sign Up')
 
 class login_form(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
@@ -31,7 +30,7 @@ class starter_entry_form(FlaskForm):
 
 class food_form(FlaskForm):
     name = StringField("Food:",validators=[DataRequired()])
-    carbs = StringField("Carbs:", validators=[DataRequired()])
+    carbs = StringField("Carbs:",validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 class blood_sugar_form(FlaskForm):

@@ -1,59 +1,60 @@
 {% extends "layout.html" %}
 {% block title %}Profile{% endblock title %}
 {% block content %}
-<H1>WELCOME, {{ username }}</H1>
-<h2>{{form_header}}</h2>
+<h1 class="display-2">User Profile</h1>
+        <div>
+        {% if check %}
+                <h2>{{out_message}}</h2>
+        {% else %}
+             <table class="table">
+                <tr>
+                    {% for header in headers %}
+                        <th scope="col">{{header}}</th>
+                    {% endfor %}
+                </tr>
+                {% for item in select_results %}
+                     <td>{{item}}</td>
+                {% endfor %}
+                 </tr>
+            </table>
+        {% endif %}
+    </div>
+    <br/>
+<h4>{{form_header}}</h4>
     <div class="content-section">
     <form method = "POST" action = "">
       {{ form.hidden_tag() }}
         <div>
-        <form method = "POST", action = "">
-          {{ form.hidden_tag() }}
           <div>
-          {{ form.height.label }}
-            {{ form.height }}
+              <br/>
+                {{ form.height.label(class="form-label")}}
+                 {{ form.height(class="form-control")}}
           </div>
-      <div>
-          {{ form.weight.label }}
-            {{ form.weight }}
-          </div>
-          <div>
-          {{ form.age.label }}
-            {{ form.age }}
-          </div>
-      <div>
-          {{ form.bmi.label }}
-            {{ form.bmi }}
+            <div>
+                 <br/>
+                {{ form.weight.label(class="form-label") }}
+                {{ form.weight(class="form-control") }}
+           </div>
+            <div>
+               <br/>
+                {{ form.age.label(class="form-label")}}
+                {{ form.age(class="form-control") }}
+             </div>
+            <div>
+           <br/>
+            {{ form.bmi.label(class="form-label")}}
+            {{ form.bmi(class="form-control")}}
           </div>
          <div>
-          {{ form.ethnicity.label }}
-            {{ form.ethnicity }}
+              <br/>
+          {{ form.ethnicity.label(class="form-label")}}
+            {{ form.ethnicity(class="form-control")}}
           </div>
+            <br/>
           <div>
-            {{ form.submit }}
+            {{form.submit(class="btn btn-primary")}}
           </div>
-        </form>
-  </div>
+        </div>
     </form>
-</div>
-    <div>
-    {% if check %}
-            <h2>{{out_message}}</h2>
-    {% else %}
-        <table>
-            <tr>
-                {% for header in headers %}
-                    <th>{{header}}</th>
-                {% endfor %}
-            </tr>
-
-            <tr>
-                {% for item in select_results %}
-                     <td>{{item}}</td>
-                {% endfor %}
-            </tr>
-
-        </table>
-    {% endif %}
     </div>
 {% endblock content %}

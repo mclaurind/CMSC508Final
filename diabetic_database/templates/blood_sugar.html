@@ -5,25 +5,11 @@
     <h1>Blood Sugar Events</h1>
     <form action = "", method = "POST">
         {{form.hidden_tag()}}
-        {{form.number.label}}
-        {{form.number}}
-        {{form.submit}}
+        <br/>
+        {{form.number.label(class="form-label")}}
+        {{form.number(class="form-control")}}
+        <br/>
+        {{form.submit(class="btn btn-primary")}}
     </form>
-</div>
-<div>
-    <table>
-        <tr>
-            {% for header in headers %}
-                <th>{{header}}</th>
-            {% endfor %}
-        </tr>
-        {% for row in message %}
-         <tr>
-            {% for item in row %}
-             <td>{{item}}</td>
-            {% endfor %}
-         </tr>
-        {% endfor %}
-    </table>
 </div>
 {% endblock content %}
